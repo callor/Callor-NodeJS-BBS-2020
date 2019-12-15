@@ -9,6 +9,7 @@ var debug = require('debug')('node-callor-lotto-statistics:server');
 var http = require('http');
 var https = require('https')
 var fs = require('fs')
+var path = require('path');
 
 var httpPort = normalizePort(process.env.PORT || '12701');
 app.set('httpPort', httpPort);
@@ -17,10 +18,22 @@ app.set('httpPort', httpPort);
 var httpsPort = normalizePort(process.env.PORT || '12700');
 app.set('httpsPort', httpsPort);
 
+var permPath = "/Users/callor/Documents/workspace/perm/callor.com"
+try {
+  fs.statSync(permPath);
+  console.log('This is Mac Directory OK');
+}
+catch (err) {
+  if (err.code === 'ENOENT') {
+    permPath = "'C:/perm/callor.com"
+    console.log('This is Window folder OK');
+  }
+}
+ 
 var options = {
-	    key: fs.readFileSync('C:/perm/callor.com/privkey1.pem'),
-	    cert: fs.readFileSync('C:/perm/callor.com/cert1.pem'),
-	    ca: fs.readFileSync('C:/perm/callor.com/chain1.pem')
+	    key: fs.readFileSync(path.join(permPath,'privkey1.pem')),
+	    cert: fs.readFileSync(path.join(permPath,'cert1.pem')),
+	    ca: fs.readFileSync(path.join(permPath,'chain1.pem'))
 };
 
 var httpServer = http.createServer(app);

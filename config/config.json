@@ -1,25 +1,25 @@
 {
   "development": {
-    "username": "root",
+    "username": "callor",
     "password": "!Korea8085",
     "database": "mybbs",
-    "host": "127.0.0.1",
+    "host": "192.168.0.220",
     "dialect": "mysql",
     "operatorsAliases": false
   },
   "test": {
-    "username": "root",
+    "username": "callor",
     "password": "!Korea8085",
     "database": "mybbs",
-    "host": "127.0.0.1",
+    "host": "192.168.0.220",
     "dialect": "mysql",
     "operatorsAliases": false
   },
   "production": {
-    "username": "root",
+    "username": "callor",
     "password": "!Korea8085",
     "database": "mybbs",
-    "host": "127.0.0.1",
+    "host": "192.168.0.220",
     "dialect": "mysql",
     "operatorsAliases": false
   }

@@ -1,0 +1,62 @@
+style.
+    .rpBody {
+        display:flex;
+        border:1px solid green;
+        padding:10px;
+    }
+    .rpBody label {
+        flex 1;
+        margin-right:20px;
+    }
+
+    .rpBody textarea{
+        flex 6 0 auto;
+        margin-left:10px;
+        width:80%;
+    }
+
+    .rpBody .btn-box {
+        flex 2 0 auto;
+        
+        margin-left:20px;
+        padding:10px;
+        display:flex;
+        
+        justify-content: center;
+        align-items: center;
+    }
+
+
+script.
+    $(function(){
+        
+
+        $('#b_repl').summernote({
+
+            placeholder: '댓글을 작성해 주세요',
+            tabsize: 10,
+            lang: 'ko-KR',
+            toolbar: [
+                ['Font Style', ['fontname']],
+                ['style', ['bold', 'italic', 'underline']],
+                ['font', ['strikethrough']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['paragraph']],
+                ['Insert', ['link']],
+                ['help', ['help']]
+            ],
+            width:'85%'
+
+        });
+
+        $("button#btn-list").click(function(){
+            document.location.href = "/bbs/list"
+        })
+    })
+
+.rpBody
+    label 댓글쓰기
+    textarea(name="b_repl", cols="100", rows="3")#b_repl
+    .btn-box
+        button.btn.btn-primary.btn-sm 저장

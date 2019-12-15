@@ -3,12 +3,15 @@ extends layout
 block content
 	script(src="/javascripts/bbsView.js?ver=1215")
 	style.
+		table.tb-view {
+			background-color:#e9ecef;
+		}
 		tr.bbs-row {
 			cursor:pointer;
 		}
 
 		table.tb-view th {
-			background-color:rgb(179, 217, 255);
+			background-color:#e9ecef;
 		}
 
 		table.tb-view td {
@@ -37,7 +40,12 @@ block content
 					td(colspan="6")= bbs.b_subject
 				tr.text
 					td(colspan="8") !{bbs.b_text}
+
+				tr.text
+					th(colspan="8")
+						include bbsRepl
+
 		article.d-flex.justify-content-end.p3
-			button(data-id= bbs.b_id)#btn-update.btn.btn-primary 수정
-			button(data-id= bbs.b_id)#btn-delete.btn.btn-danger 삭제
-			button(data-id= bbs.b_id)#btn-list.btn.btn-success 목록
+			button(data-id= bbs.b_id)#btn-update.btn.btn-primary 본문수정
+			button(data-id= bbs.b_id)#btn-delete.btn.btn-danger 본문삭제
+			button(data-id= bbs.b_id)#btn-list.btn.btn-success 목록으로
