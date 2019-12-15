@@ -1,0 +1,43 @@
+extends layout
+
+block content
+	script(src="/javascripts/bbsView.js?ver=1215")
+	style.
+		tr.bbs-row {
+			cursor:pointer;
+		}
+
+		table.tb-view th {
+			background-color:rgb(179, 217, 255);
+		}
+
+		table.tb-view td {
+			background-color:white;
+		}
+
+		table.tb-view tr.text {
+			border-bottom:1px solid green;
+		}
+
+		.btn {
+			margin-left : 5px;
+		}
+	div.container-flud
+		section.class
+			table.table.table-striped.table-hover.tb-view
+				tr
+					th 작성일자
+					td(data-id= bbs.b_id)#b_id= bbs.b_date
+					th 작성시각
+					td= bbs.b_time
+					th 작성자
+					td= bbs.b_writer
+				tr
+					th 제목
+					td(colspan="6")= bbs.b_subject
+				tr.text
+					td(colspan="8") !{bbs.b_text}
+		article.d-flex.justify-content-end.p3
+			button(data-id= bbs.b_id)#btn-update.btn.btn-primary 수정
+			button(data-id= bbs.b_id)#btn-delete.btn.btn-danger 삭제
+			button(data-id= bbs.b_id)#btn-list.btn.btn-success 목록

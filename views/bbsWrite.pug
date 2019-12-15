@@ -1,0 +1,52 @@
+extends layout
+
+block content
+
+	style.
+		fieldset {
+			border:1px solid blue;
+			width:;
+			margin:20px auto;
+			padding:20px;
+			border-radius:15px;
+		}
+
+		legend {
+			display:inline;
+		}
+
+		.btn {
+			margin-left : 5px;
+		}
+
+	script.
+		$(function(){
+			$('#summernote').summernote({
+				
+				placeholder: '본문을 작성해 주세요',
+				tabsize: 2,
+				height: 200
+				
+			});
+
+			$("button#btn-list").click(function(){
+				document.location.href = "/bbs/list"
+			})
+		})
+	div.container-flud.p-3.text-blue
+		form(method="POST")
+			fieldset
+				div.form-group
+					input(type="date",name="b_date",placeholder="날짜선택",value= BBsVO.b_date).form-control
+				div.form-group
+					input(type="time" name="b_time",placeholder="시간선택",value= BBsVO.b_time).form-control#b_date
+				div.form-group
+					input(name="b_writer",placeholder="작성자를 입력하세요",value= BBsVO.b_writer).form-control#b_date
+				div.form-group
+					input(name="b_subject",,placeholder="제목을 입력하세요",value= BBsVO.b_subject).form-control#b_date
+				div.form-group
+					textarea#summernote(name="b_text", cols="30", rows="50s")= BBsVO.b_text
+
+				div.form-group.d-flex.justify-content-end
+					button.btn.btn-primary 저장
+					button(type="button")#btn-list.btn.btn-success 목록으로

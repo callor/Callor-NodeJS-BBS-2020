@@ -1,0 +1,20 @@
+
+
+ul.pagination.justify-content-center
+	
+	a(href=paginate.href({page:1})).page-link 처음
+	
+	li.page-item
+		a(href=paginate.href(true)).page-link.prev 이전
+			
+	if pages
+		each page,index in pages
+			p= page.page
+			if currentPage == page.number
+				li.page-item.active
+					a(href=page.url).page-link= page.number
+			else
+				li.page-item
+					a(href=page.url).page-link= page.number
+					
+	a(href=paginate.href({page:pageCount})).page-link 끝
