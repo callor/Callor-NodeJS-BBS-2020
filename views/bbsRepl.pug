@@ -1,21 +1,21 @@
 style.
-    .rpBody {
+    form {
         display:flex;
         border:1px solid green;
         padding:10px;
     }
-    .rpBody label {
+    form label {
         flex 1;
         margin-right:20px;
     }
 
-    .rpBody textarea{
+    form textarea{
         flex 6 0 auto;
         margin-left:10px;
         width:80%;
     }
 
-    .rpBody .btn-box {
+    form .btn-box {
         flex 2 0 auto;
         
         margin-left:20px;
@@ -56,7 +56,14 @@ script.
     })
 
 .rpBody
-    label 댓글쓰기
-    textarea(name="b_repl", cols="100", rows="3")#b_repl
-    .btn-box
-        button.btn.btn-primary.btn-sm 저장
+    .reply
+        if bbs.replies
+            each rp, index in bbs.replies
+                p= rp.r_writer, rp.r_content
+
+    form(method="POST",action="/reply/insert")
+        input(type="hidden",name="b_id",value= bbs.b_id )
+        label 댓글쓰기
+        textarea(name="r_content", cols="100", rows="3")#b_repl
+        .btn-box
+            button.btn.btn-primary.btn-sm 저장

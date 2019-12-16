@@ -12,7 +12,9 @@ module.exports = (app)=>{
 var paginate = require('express-paginate');
 
   app.use(paginate.middleware(10, 50));
-  const { bbs } = require('../models')
+
+  // models/*.js 파일이름이 객체 이름이 된다.
+  const { tbl_bbs,tbl_reply } = require('../models')
 
   router.all(function (req, res, next) {
     // set default or minimum is 10 (as it was prior to v0.2.0)
@@ -21,14 +23,11 @@ var paginate = require('express-paginate');
     next();
   });
 
-
-
-
   const pageLimit = 10;
 
   router.get('/list', function (req, res, next) {
 	console.log("query Page :" + req.query.page)
-    bbs.findAndCountAll({
+    tbl_bbs.findAndCountAll({
       order: [['b_id', 'DESC']],
       limit: pageLimit,
       offset: req.query.page - 1
@@ -70,7 +69,7 @@ var paginate = require('express-paginate');
   /* POST insert */
   router.post('/insert', function (req, res, next) {
 	console.log(req.body)
-    bbs.create({
+    tbl_bbs.create({
 		// req.body
 		
 		b_id: 0,
@@ -81,10 +80,10 @@ var paginate = require('express-paginate');
 		b_text: req.body.b_text
     })
       .then(result => {
-		bbs.count({},function(result){
+		tbl_bbs.count({},function(result){
 			console.log("INSERT : " + result)
 		})  
-        bbs.findAll({ order: [['b_id', 'DESC']] })
+        tbl_bbs.findAll({ order: [['b_id', 'DESC']] })
           .then(function (result) {
 			// res.send(result)
 			res.redirect('/bbs/list')
@@ -96,8 +95,15 @@ var paginate = require('express-paginate');
   router.get('/view', function (req, res, next) {
 
 	let b_id = req.query.b_id
-	bbs.findOne({
+	tbl_bbs.findOne({
+		include: {
+			model: tbl_reply,
+			where : {
+				r_postId : b_id
+			}
+		},
 		where : {b_id : b_id}
+
 	})
 	.then(function(result){
 		// res.send(result)
@@ -108,7 +114,7 @@ var paginate = require('express-paginate');
   router.get('/update', function (req, res, next) {
 
 	let b_id = req.query.b_id
-	bbs.findOne({
+	tbl_bbs.findOne({
 		where : {b_id : b_id}
 	})
 	.then(function(result){
@@ -120,7 +126,7 @@ var paginate = require('express-paginate');
   router.post('/update', function (req, res, next) {
 
 	let b_id = req.query.b_id
-	bbs.update(
+	tbl_bbs.update(
 		{
 			b_date: req.body.b_date,
 			b_time: req.body.b_time,
@@ -139,7 +145,7 @@ var paginate = require('express-paginate');
   router.get('/delete', function (req, res, next) {
 
 	let b_id = req.query.b_id
-	bbs.destroy({
+	tbl_bbs.destroy({
 		where : {b_id : b_id}
 	})
 	.then(function(result){
@@ -148,8 +154,6 @@ var paginate = require('express-paginate');
 		
 	})
   })
-
-
 
   return router;
 

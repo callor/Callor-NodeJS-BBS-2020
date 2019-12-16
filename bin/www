@@ -11,11 +11,11 @@ var https = require('https')
 var fs = require('fs')
 var path = require('path');
 
-var httpPort = normalizePort(process.env.PORT || '12701');
+var httpPort = normalizePort(process.env.PORT || '3001');
 app.set('httpPort', httpPort);
 
 
-var httpsPort = normalizePort(process.env.PORT || '12700');
+var httpsPort = normalizePort(process.env.PORT || '3000');
 app.set('httpsPort', httpsPort);
 
 var permPath = "/Users/callor/Documents/workspace/perm/callor.com"

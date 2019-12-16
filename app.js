@@ -10,7 +10,7 @@ var app = express();
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var bbsRouter = require('./routes/bbsController')(app);
-
+var replyRouter = require('./routes/replyController')(app);
 
 
 
@@ -32,6 +32,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/bbs', bbsRouter);
+app.use('/reply', replyRouter);
+
 app.use('/users', usersRouter);
 
 

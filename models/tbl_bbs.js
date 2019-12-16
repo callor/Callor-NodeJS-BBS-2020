@@ -1,5 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define('bbs', {
+    // return sequelize.define('tbl_bbs', {
+    
+    var bbs = sequelize.define('tbl_bbs', {
         b_id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
@@ -34,6 +36,12 @@ module.exports = (sequelize, DataTypes) => {
     }, {
         timestamps: true,
     });
+
+    bbs.associate = function(models) {
+        bbs.hasMany(models.tbl_reply)
+    }
+
+    return bbs;
 
 
 };
