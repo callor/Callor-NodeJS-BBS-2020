@@ -96,19 +96,29 @@ var paginate = require('express-paginate');
 
 	let b_id = req.query.b_id
 	tbl_bbs.findOne({
-		include: {
-			model: tbl_reply,
-			where : {
-				r_postId : b_id
-			}
-		},
-		where : {b_id : b_id}
+		where : {b_id : b_id},
+		include : {model:tbl_reply}
+	
+	})
+	.then(function(record){
 
+		// 조회수 update
+		tbl_bbs.update(
+			{
+				b_count : record.b_count + 1
+			},
+			{where : {b_id : b_id}
+		}).
+		then(function(result){
+			console.log(record)
+			res.render('bbsView',{bbs:record})
+		})
 	})
-	.then(function(result){
-		// res.send(result)
-		res.render('bbsView',{bbs:result})
-	})
+	.catch(function (err) {
+		console.log('INCLUDE ERROR')
+		res.json(err)
+	  });
+
   })
 
   router.get('/update', function (req, res, next) {
@@ -121,6 +131,9 @@ var paginate = require('express-paginate');
 		// res.send(result)
 		res.render('bbsWrite',{BBsVO:result})
 	})
+	.catch(function (err) {
+		res.send(err)
+	  });
   })
 
   router.post('/update', function (req, res, next) {

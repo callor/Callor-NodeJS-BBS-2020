@@ -32,13 +32,19 @@ module.exports = (sequelize, DataTypes) => {
         b_text: {
             type: DataTypes.TEXT,
             allowNull: false,
-        },
+		},
+		b_count: {
+            type: DataTypes.INTEGER,
+			allowNull: true,
+			defaultValue:0
+		},
+
     }, {
         timestamps: true,
     });
 
     bbs.associate = function(models) {
-        bbs.hasMany(models.tbl_reply)
+        bbs.hasMany(models.tbl_reply,{foreignKey: 'r_postId'})
     }
 
     return bbs;

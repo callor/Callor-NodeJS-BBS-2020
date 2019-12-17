@@ -2,10 +2,6 @@ extends layout
 
 block content
 	script(src="/javascripts/bbsList.js?ver=1215002")
-	style.
-		tr.bbs-row {
-			cursor:pointer;
-		}
 	div.container-flud
 		section.class
 			article.col-sm-12
@@ -26,7 +22,7 @@ block content
 							td= item.b_time
 							td= item.b_writer
 							td= item.b_subject
-							td 0
+							td= item.b_count
 			article.col-sm-12.d-flex.justify-content-end
 				button#btn-insert.btn.btn-primary.text-white 글쓰기
 			include pager

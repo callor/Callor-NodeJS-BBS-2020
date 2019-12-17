@@ -16,9 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   reply.associate = function(models){
-    reply.belongsTo(models.tbl_bbs, {
-      foreignKey: "b_id"
-    })
+    reply.belongsTo(models.tbl_bbs) // , {      foreignKey: "r_postId" rs})
   };
 
   return reply;

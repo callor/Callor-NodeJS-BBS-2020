@@ -1,69 +1,21 @@
-style.
-    form {
-        display:flex;
-        border:1px solid green;
-        padding:10px;
-    }
-    form label {
-        flex 1;
-        margin-right:20px;
-    }
-
-    form textarea{
-        flex 6 0 auto;
-        margin-left:10px;
-        width:80%;
-    }
-
-    form .btn-box {
-        flex 2 0 auto;
-        
-        margin-left:20px;
-        padding:10px;
-        display:flex;
-        
-        justify-content: center;
-        align-items: center;
-    }
-
-
-script.
-    $(function(){
-        
-
-        $('#b_repl').summernote({
-
-            placeholder: '댓글을 작성해 주세요',
-            tabsize: 10,
-            lang: 'ko-KR',
-            toolbar: [
-                ['Font Style', ['fontname']],
-                ['style', ['bold', 'italic', 'underline']],
-                ['font', ['strikethrough']],
-                ['fontsize', ['fontsize']],
-                ['color', ['color']],
-                ['para', ['paragraph']],
-                ['Insert', ['link']],
-                ['help', ['help']]
-            ],
-            width:'85%'
-
-        });
-
-        $("button#btn-list").click(function(){
-            document.location.href = "/bbs/list"
-        })
-    })
 
 .rpBody
-    .reply
-        if bbs.replies
-            each rp, index in bbs.replies
-                p= rp.r_writer, rp.r_content
-
-    form(method="POST",action="/reply/insert")
-        input(type="hidden",name="b_id",value= bbs.b_id )
-        label 댓글쓰기
-        textarea(name="r_content", cols="100", rows="3")#b_repl
-        .btn-box
-            button.btn.btn-primary.btn-sm 저장
+	.reply
+		if bbs.tbl_replies
+			table(width="100%",border="1")
+				colgroup
+					col(width="20%")
+					col(width="70%")
+					col(width="30%")
+				each rp, index in bbs.tbl_replies
+					tr
+						td !{rp.r_writer}
+						td !{rp.r_content} 
+						td.r_delete(data-id= bbs.b_id) x
+	form.reply(method="POST",action="/reply/insert")
+		input(type="hidden",name="b_id",value= bbs.b_id )
+		.r-input
+			input(type="text",name="r_writer",placeholder="작성자를 입력하세요" ).form-control
+		.r-input
+			textarea(name="r_content", cols="100", rows="3")#b_repl
+			button.btn.btn-primary.btn-sm 저장

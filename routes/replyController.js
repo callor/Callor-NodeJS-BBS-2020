@@ -17,12 +17,12 @@ module.exports = (app)=>{
 		    // req.body
 		
 		    r_postId: req.body.b_id,
-            r_writer: '홍길동',
+            r_writer: req.body.r_writer,
             r_content: req.body.r_content
       
         })
         .then(function(result){
-            res.redirect("/bbs/list")
+            res.redirect("/bbs/view?b_id=" + req.body.b_id)
         })
     })
 

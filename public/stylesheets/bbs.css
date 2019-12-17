@@ -1,0 +1,99 @@
+/* init
+----------------------------------------*/
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	width: 90%;
+	margin: 0 auto;
+}
+
+button {
+	margin-left: 5px;
+}
+
+.container-flud {
+	margin-top: 0px;
+	border:1px solid #eee;
+
+}
+
+
+/* 리스트 보기
+----------------------------------------*/
+tr.bbs-row {
+	cursor:pointer;
+}
+
+
+/* 게시판 글쓰기, bbsWrite
+----------------------------------------*/
+
+fieldset {
+	border:1px solid blue;
+	width:100%;
+	margin:0 auto;
+	padding:20px;
+	border-radius:15px;
+}
+
+
+
+/* 내용보기,bbsView
+----------------------------------------*/
+table.tb-view {
+	background-color:#e9ecef;
+}
+tr.bbs-row {
+	cursor:pointer;
+}
+
+table.tb-view th {
+	background-color:#e9ecef;
+	text-align:right;
+}
+
+table.tb-view td {
+	background-color:white;
+}
+
+table.tb-view tr.text {
+	border-bottom:1px solid green;
+}
+
+table.tb-view .btn {
+	margin-left : 5px;
+}
+
+/* reply
+-----------------------------------------------------*/
+
+div.reply {
+	border:1px solid blue;
+}
+
+div.re
+
+form.reply {
+	border:1px solid green;
+	padding:10px;
+}
+
+form.reply .r-input {
+	display:flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+form.reply textarea{
+	flex : 6 0 auto;
+	margin-left:10px;
+	width:80%;
+}
+
+tr.r_delete {
+	cursor: pointer;
+
+}

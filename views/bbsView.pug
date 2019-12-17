@@ -3,28 +3,7 @@ extends layout
 block content
 	script(src="/javascripts/bbsView.js?ver=1215")
 	style.
-		table.tb-view {
-			background-color:#e9ecef;
-		}
-		tr.bbs-row {
-			cursor:pointer;
-		}
 
-		table.tb-view th {
-			background-color:#e9ecef;
-		}
-
-		table.tb-view td {
-			background-color:white;
-		}
-
-		table.tb-view tr.text {
-			border-bottom:1px solid green;
-		}
-
-		.btn {
-			margin-left : 5px;
-		}
 	div.container-flud
 		section.class
 			table.table.table-striped.table-hover.tb-view
@@ -35,14 +14,18 @@ block content
 					td= bbs.b_time
 					th 작성자
 					td= bbs.b_writer
+					th 조회수
+					td= bbs.b_count
+
 				tr
 					th 제목
-					td(colspan="6")= bbs.b_subject
+					td(colspan="7")= bbs.b_subject
 				tr.text
 					td(colspan="8") !{bbs.b_text}
 
 				tr.text
-					th(colspan="8")
+					th 댓글
+					td(colspan="7")
 						include bbsRepl
 
 		article.d-flex.justify-content-end.p3
