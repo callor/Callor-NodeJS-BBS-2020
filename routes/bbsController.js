@@ -27,10 +27,13 @@ var paginate = require('express-paginate');
 
   router.get('/list', function (req, res, next) {
 	console.log("query Page :" + req.query.page)
+	let offset = (req.query.page- 1) * pageLimit
+	if(offset < 1) offset = 1
+	console.log('오프셋 :' + offset)
     tbl_bbs.findAndCountAll({
       order: [['b_id', 'DESC']],
       limit: pageLimit,
-      offset: req.query.page - 1
+      offset: offset // (Math.ceil((req.query.page - 1) / pageLimit)) 
 
     })
       .then(function (result) {
@@ -38,9 +41,8 @@ var paginate = require('express-paginate');
         // pagination을 구현하기 위한 배열 생성
         // .getArrayPages(limit, pageCount, currentPage)
         // 선택된 페이지를 중심으로 좌우로 limite 개수 만큼 페이지 번호 나열
-
-        const pageArray = paginate.getArrayPages(req)(10, pageLimit,req.query.page)
         let pageCount = Math.ceil(result.count / pageLimit);
+		const pageArray = paginate.getArrayPages(req)(pageLimit, pageCount,req.query.page)
 
         console.log(result.count)
         res.render('bbsList', {
