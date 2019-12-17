@@ -2,7 +2,7 @@
 .rpBody
 	.reply
 		if bbs.tbl_replies
-			table(width="100%",border="1")
+			table(width="100%")
 				colgroup
 					col(width="20%")
 					col(width="70%")
@@ -11,7 +11,8 @@
 					tr
 						td !{rp.r_writer}
 						td !{rp.r_content} 
-						td.r_delete(data-id= bbs.b_id) x
+						td
+							span.r-delete(data-r-id= rp.id, data-b-id = bbs.b_id) x
 	form.reply(method="POST",action="/reply/insert")
 		input(type="hidden",name="b_id",value= bbs.b_id )
 		.r-input

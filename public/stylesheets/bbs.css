@@ -72,13 +72,13 @@ table.tb-view .btn {
 -----------------------------------------------------*/
 
 div.reply {
-	border:1px solid blue;
+	border:1px solid #ddd;
 }
 
-div.re
+
 
 form.reply {
-	border:1px solid green;
+	border:1px solid #ddd;
 	padding:10px;
 }
 
@@ -90,10 +90,16 @@ form.reply .r-input {
 form.reply textarea{
 	flex : 6 0 auto;
 	margin-left:10px;
-	width:80%;
+	width:90%;
 }
 
-tr.r_delete {
+span.r-delete {
+	display: inline-block;
+	padding:2px 7px;
 	cursor: pointer;
-
+	border-radius: 50%;
+	font-weight: bold;
+}
+span.r-delete:hover {
+	background-color : #ddd;
 }

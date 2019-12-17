@@ -11,10 +11,11 @@ $(function() {
 		}
 
 	})
-	$("button#btn-list").click(function(){
-		document.location.href = "/bbs/list"
+	$("span.r-delete").click(function(){
+		let r_id = $(this).attr("data-r-id")
+		let b_id = $(this).attr("data-b-id")
+		if(confirm("댓글을 삭제합니다")) {
+			document.location.href = "/reply/delete?r_id=" + r_id + "&b_id="+b_id
+		}
 	})
-
-
-
 })

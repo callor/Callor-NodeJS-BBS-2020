@@ -26,6 +26,20 @@ module.exports = (app)=>{
         })
     })
 
+    router.get('/delete', function (req, res, next) {
+        let b_id = req.query.b_id
+        let r_id = req.query.r_id
+        tbl_reply.destroy({
+            where : {id : r_id}
+        })
+        .then(function(result){
+            // res.send(result)
+            res.redirect('/bbs/view?b_id=' + b_id)
+            
+        })
+      })
+
+
     return router
 
 }

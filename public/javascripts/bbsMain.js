@@ -53,7 +53,7 @@ $(function(){
 			['Insert', ['link']],
 			['help', ['help']]
 		],
-		width:'85%'
+		width:'95%'
 	
 	});
 
