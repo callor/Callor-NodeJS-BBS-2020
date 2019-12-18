@@ -27,8 +27,8 @@ var paginate = require('express-paginate');
 
   router.get('/list', function (req, res, next) {
 	console.log("query Page :" + req.query.page)
-	let offset = (req.query.page- 1) * pageLimit
-	if(offset < 1) offset = 1
+	let offset = (req.query.page- 1) * pageLimit 
+	// if(offset < 1) offset = 1
 	console.log('오프셋 :' + offset)
     tbl_bbs.findAndCountAll({
       order: [['b_id', 'DESC']],
