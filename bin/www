@@ -31,9 +31,9 @@ catch (err) {
 }
  
 var options = {
-	    key: fs.readFileSync(path.join(permPath,'privkey1.pem')),
-	    cert: fs.readFileSync(path.join(permPath,'cert1.pem')),
-	    ca: fs.readFileSync(path.join(permPath,'chain1.pem'))
+	    key: fs.readFileSync(path.join(permPath,'privkey.pem')),
+	    cert: fs.readFileSync(path.join(permPath,'cert.pem')),
+	    ca: fs.readFileSync(path.join(permPath,'chain.pem'))
 };
 
 var httpServer = http.createServer(app);
