@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
         b_text: {
-            type: DataTypes.TEXT,
+            type: DataTypes.BLOB,
             allowNull: false,
 		},
 		b_count: {

@@ -22,11 +22,21 @@ sequelize.sync()
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+var bodyParser = require('body-parser');
+app.use(bodyParser.json({limit: "500mb"}));
+app.use(bodyParser.urlencoded({limit: "500mb", extended: true, parameterLimit:5000000}));
+
 app.use(logger('dev'));
+// app.use(express.json({limit: "50mb"}));
+// app.use(express.urlencoded({imit: "50mb", extended: true , parameterLimit:1000000}));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: true}));
+
+
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
 
 
 
